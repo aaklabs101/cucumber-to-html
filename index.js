@@ -4,6 +4,7 @@ const { cucumberCustomObject } = require("./utils/cucumberCustomObject");
 const { generateHTMLTable } = require("./utils/generateHTMLTable");
 const fs = require("fs").promises; // Import the fs module to read files
 const pdf = require("html-pdf");
+// const inquirer = require("inquirer");
 
 let mainWindow;
 
@@ -34,17 +35,24 @@ app.on("ready", () => {
         // Generate HTML table
         const html = generateHTMLTable(gridData);
 
-        // Create PDF with html-pdf
-        pdf.create(html).toFile("output.pdf", (err, res) => {
-          if (err) {
-            console.error("Error generating PDF:", err);
-            return;
-          }
+        // Write HTML to a file
+        const outputPath = path.join(__dirname, "html/output.html");
+        await fs.writeFile(outputPath, html, "utf8");
 
-          // Send the path of the generated PDF to the renderer process
-          event.sender.send("pdf-generated", res.filename);
-          console.log("PDF created successfully:", res);
-        });
+        // Send the path of the generated HTML file to the renderer process
+        event.sender.send("html-generated", outputPath);
+        console.log("HTML file created successfully:", outputPath);
+        // // Create PDF with html-pdf
+        // pdf.create(html).toFile("pdf/output.pdf", (err, res) => {
+        //   if (err) {
+        //     console.error("Error generating PDF:", err);
+        //     return;
+        //   }
+
+        //   // Send the path of the generated PDF to the renderer process
+        //   event.sender.send("pdf-generated", res.filename);
+        //   console.log("PDF created successfully:", res);
+        // });
         // console.log("File data:", gridData);
       } catch (err) {
         console.error("Error reading file:", err);

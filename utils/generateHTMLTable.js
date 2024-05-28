@@ -251,27 +251,28 @@ exports.generateHTMLTable = (data) => {
     },
   ];
 
-  let html = "<html><head><title>Grid Data</title></head><body>";
-  html += "<table><tr>";
+  let html =
+    "<html><head><title>Grid Data</title></head><body style='margin: auto;width:950px '>";
+  html += "<table style='border: 1px slid #000000;'><tr>";
 
   // Initial cell for spacing
-  html += `<th bgcolor="${COLORS["Header"]}" class="border"></th>`;
+  html += `<th bgcolor="${COLORS["Header"]}" style='padding: 5px;' class="border"></th>`;
 
   // Cells for Steps
-  html += `<th bgcolor="${COLORS["Header"]}" class="border" colspan="6" align="center">Steps</th>`;
+  html += `<th  style='padding: 5px;' bgcolor="${COLORS["Header"]}" class="border" colspan="6" align="center">Steps</th>`;
 
   // Cells for Scenarios
-  html += `<th bgcolor="${COLORS["Header"]}" class="border" colspan="3" align="center">Scenarios</th>`;
+  html += `<th  style='padding: 5px;' bgcolor="${COLORS["Header"]}" class="border" colspan="3" align="center">Scenarios</th>`;
 
   // Cells for Features
-  html += `<th bgcolor="${COLORS["Header"]}" class="border" colspan="3" align="center">Features</th>`;
+  html += `<th style='padding: 5px;' bgcolor="${COLORS["Header"]}" class="border" colspan="3" align="center">Features</th>`;
 
   html += "</tr>";
 
   // Table Head
   html += "<tr>";
   headCells.forEach((headCell) => {
-    html += `<th align="center" class="border" bgcolor="${
+    html += `<th  style='padding: 5px;' align="center" class="border" bgcolor="${
       COLORS[headCell.label]
     }">${headCell.label}</th>`;
   });
@@ -280,39 +281,39 @@ exports.generateHTMLTable = (data) => {
   // Table Body
   data.forEach((row) => {
     html += "<tr>";
-    html += `<th>${row.name}</th>`;
-    html += `<th align="center" bgcolor="${
+    html += `<th style='padding: 5px 0;'>${row.name}</th>`;
+    html += `<th style='padding: 5px 0;' align="center" bgcolor="${
       row.stepsPassed !== 0 ? COLORS["Passed"] : ""
     }">${row.stepsPassed}</th>`;
-    html += `<th align="center" bgcolor="${
+    html += `<th style='padding: 5px 0;' align="center" bgcolor="${
       row.stepsFailed !== 0 ? COLORS["Failed"] : ""
     }">${row.stepsFailed}</th>`;
-    html += `<th align="center" bgcolor="${
+    html += `<th style='padding: 5px 0;' align="center" bgcolor="${
       row.stepsSkipped !== 0 ? COLORS["Skipped"] : ""
     }">${row.stepsSkipped}</th>`;
-    html += `<th align="center" bgcolor="${
+    html += `<th style='padding: 5px 0;' align="center" bgcolor="${
       row.stepsUndefined !== 0 ? COLORS["Undefined"] : ""
     }">${row.stepsUndefined}</th>`;
-    html += `<th align="center" bgcolor="${
+    html += `<th style='padding: 5px 0;' align="center" bgcolor="${
       row.stepsPending !== 0 ? COLORS["Pending"] : ""
     }">${row.stepsPending}</th>`;
-    html += `<th align="center" bgcolor="${
+    html += `<th style='padding: 5px 0;' align="center" bgcolor="${
       row.stepsTotal !== 0 ? COLORS["Total"] : ""
     }">${row.stepsTotal}</th>`;
-    html += `<th align="center" bgcolor="${
+    html += `<th style='padding: 5px 0;' align="center" bgcolor="${
       row.scenariosPassed !== 0 ? COLORS["Passed"] : ""
     }">${row.scenariosPassed}</th>`;
-    html += `<th align="center" bgcolor="${
+    html += `<th style='padding: 5px 0;' align="center" bgcolor="${
       row.scenariosFailed !== 0 ? COLORS["Failed"] : ""
     }">${row.scenariosFailed}</th>`;
-    html += `<th align="center" bgcolor="${
+    html += `<th style='padding: 5px 0;' align="center" bgcolor="${
       row.scenariosTotal !== 0 ? COLORS["Total"] : ""
     }">${row.scenariosTotal}</th>`;
-    html += `<th align="center">${row.row_duration}</td>`;
-    html += `<th align="center">${row.duration}</th>`;
-    html += `<th align="center" bgcolor="${COLORS[row.status]}">${
-      row.status
-    }</th>`;
+    html += `<th style='padding: 5px 0;' align="center">${row.row_duration}</td>`;
+    html += `<th style='padding: 5px 0;' align="center">${row.duration}</th>`;
+    html += `<th style='padding: 5px 0;' align="center" bgcolor="${
+      COLORS[row.status]
+    }">${row.status}</th>`;
     html += "</tr>";
   });
 
