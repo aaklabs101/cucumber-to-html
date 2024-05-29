@@ -30,10 +30,12 @@ app.on("ready", () => {
       try {
         const data = await fs.readFile(filePath, "utf8");
         // const customData = await getCustomData(JSON.parse(data));
-        const { gridData } = await cucumberCustomObject(JSON.parse(data));
+        const { gridData, counterData } = await cucumberCustomObject(
+          JSON.parse(data)
+        );
 
         // Generate HTML table
-        const html = generateHTMLTable(gridData);
+        const html = generateHTMLTable(gridData, counterData);
 
         // Write HTML to a file
         const outputPath = path.join(__dirname, "html/output.html");
